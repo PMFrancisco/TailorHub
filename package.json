@@ -1,0 +1,14 @@
+{
+  "name": "tailorhub",
+  "version": "0.1.0",
+  "description": "TailorHub Technical Test",
+  "scripts": {
+    "test": "test",
+    "prepare": "husky"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.0.11"
+  }
+}
