@@ -1,9 +1,7 @@
-import styles from "../../styles/footer.module.css";
-
 export const FooterText = () => {
-    return (
-      <p className={styles.footerText}>
-        Prueba técnica ©Tailor Hub SL 2019 – 2024
-      </p>
-    );
-  };
+  return (
+    <p className="font-sans text-base leading-6 text-black">
+      Prueba técnica ©Tailor Hub SL 2019 – 2024
+    </p>
+  );
+};
