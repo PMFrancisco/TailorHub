@@ -25,4 +25,25 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await UserModel.findByUsername(username);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const isMatch = await UserModel.validatePassword(user, password);
+        if (!isMatch) {
+            return res.status(401).json({ error: "Invalid credentials" });
+        }
+
+        const token = UserModel.generateToken(user);
+        res.json({ username: user.username, token });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;
