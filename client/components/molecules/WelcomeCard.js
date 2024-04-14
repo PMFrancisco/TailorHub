@@ -1,12 +1,12 @@
 import { Button } from "../atoms/Button";
-import { LogoImageName } from "../atoms/LogoImageName";
+import { LogoWithName } from "../atoms/LogoWithName";
 import { Paragraph } from "../atoms/Paragraph";
 import { Title } from "../atoms/Title";
 
 export const WelcomeCard = () => {
   return (
     <div className="bg-[#F1F1F0] rounded-xl p-8 flex flex-col items-start justify-center w-full m-auto gap-8">
-      <LogoImageName />
+      <LogoWithName />
       <div>
         <Title>Hola,</Title>
         <Paragraph>
@@ -14,7 +14,7 @@ export const WelcomeCard = () => {
           restaurantes favoritos donde te gustaría ir en tu onboarding.
         </Paragraph>
       </div>
-      <Button>Entrar</Button>
+      <Button href="/login" className="border-black">Entrar</Button>
     </div>
   );
 };

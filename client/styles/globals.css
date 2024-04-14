@@ -46,3 +46,18 @@ body {
 .hidden {
   display: none;
 }
+
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 24px);
+  transform: translateY(-50%) rotate(180deg);
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: #000;
+}

@@ -1,10 +1,14 @@
-export const Button = ({ children, onClick }) => {
-  return (
+import Link from "next/link";
+
+export const Button = ({ className, children, onClick, href }) => {
+  const button = (
     <button
-      className="w-52 h-16 border-2 border-black rounded-3xl font-sans font-semibold text-2xl"
+      className={`${className} px-8 h-16 border-2 rounded-3xl font-sans font-semibold text-2xl flex justify-center items-center`}
       onClick={onClick}
     >
       {children}
     </button>
   );
+
+  return href ? <Link href={href}>{button}</Link> : button;
 };
