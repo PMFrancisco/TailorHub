@@ -24,21 +24,18 @@ class UserModel {
         }
     }
 
-    static async createUser(username, password) {
+    static async createUser(username, email, password) {
         const users = await this.readUsers();
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = { username, password: hashedPassword, favourites: [] };
 
-        const exists = users.find(u => u.username === username);
-        if (exists) {
-            throw new Error('User already exists');
+        if (users.some(u => u.username === username || u.email === email)) {
+            throw new Error('Username or email already exists');
         }
 
+        const user = { username, email, password: hashedPassword, favourites: [] };
         users.push(user);
         await this.writeUsers(users);
-
-        const token = jwt.sign({ username: user.username, favourites: user.favourites }, JWT_SECRET, { expiresIn: '2h' });
-        return { username, token, favourites: user.favourites };
+        return this.generateToken(user);
     }
 
     static async findByUsername(username) {
@@ -51,7 +48,7 @@ class UserModel {
     }
 
     static generateToken(user) {
-        return jwt.sign({ username: user.username, favourites: user.favourites }, JWT_SECRET, { expiresIn: '2h' });
+        return jwt.sign({ username: user.username, email: user.email, favourites: user.favourites }, JWT_SECRET, { expiresIn: '2h' });
     }
 }
 

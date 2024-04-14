@@ -1,7 +1,8 @@
 [
   {
     "username": "testUser",
-    "password": "$2b$10$NvBYQigMO4O8hnkdrgE.Yuvw/Fp.2wTYCoiXT/lpyQHkIaSJ4ukdO",
+    "email": "test@test.com",
+    "password": "$2b$10$Iw326Ue5nNvIejKyoM8LH.q8Otr1gWJ9aKbTSJXqnsuyOZ/xmWOgC",
     "favourites": []
   }
 ]

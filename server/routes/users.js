@@ -1,25 +1,20 @@
 const express = require("express");
 const router = express.Router();
-
 const UserModel = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
 
-  if (!username || !password) {
-    return res
-      .status(400)
-      .json({ error: "Username and password are required." });
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields are required." });
   }
   if (password.length < 6) {
-    return res
-      .status(400)
-      .json({ error: "Password must be at least 6 characters long." });
+    return res.status(400).json({ error: "Password must be at least 6 characters long." });
   }
 
   try {
-    const newUser = await UserModel.createUser(username, password);
-    res.status(201).json(newUser);
+    const token = await UserModel.createUser(username, email, password);
+    res.status(201).json({ username, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
