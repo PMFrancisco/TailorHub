@@ -38,9 +38,9 @@ class UserModel {
         return this.generateToken(user);
     }
 
-    static async findByUsername(username) {
+    static async findByEmail(email) {
         const users = await this.readUsers();
-        return users.find(user => user.username === username);
+        return users.find(user => user.email === email);
     }
 
     static async validatePassword(user, password) {
