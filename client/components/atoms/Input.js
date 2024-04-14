@@ -1,4 +1,4 @@
-export const Input = ({ label, id, type, placeholder }) => {
+export const Input = ({ label, id, type, placeholder, value, onChange }) => {
   return (
     <div className="flex flex-col gap-1 w-full">
       <label htmlFor={id} className="font-sans font-semibold text-2xl">
@@ -9,6 +9,8 @@ export const Input = ({ label, id, type, placeholder }) => {
         type={type}
         id={id}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         autoComplete={
           type === "password"
             ? "current-password"

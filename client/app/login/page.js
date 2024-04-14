@@ -1,3 +1,5 @@
+"use client";
+
 import { StyledImage } from "@/components/atoms/StyledImage";
 import { Layout } from "@/components/layouts/Layout";
 import { ImageContainer } from "@/components/molecules/ImageContainer";
