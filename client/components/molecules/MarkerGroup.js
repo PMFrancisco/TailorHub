@@ -1,4 +1,4 @@
-import { CustomMarker } from "../atoms/CustomMarker";
+import { CustomMarker } from "./CustomMarker";
 
 export const MarkerGroup = ({ restaurants }) => {console.log(restaurants);
     return (

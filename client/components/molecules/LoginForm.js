@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
-import { loginEmail } from "@/services/users";
 import { useRouter } from "next/navigation";
+import { loginEmail } from "@/app/api/users";
 
 export const LoginForm = ({}) => {
   const [email, setEmail] = useState("");

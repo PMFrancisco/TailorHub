@@ -4,7 +4,7 @@ import { LogoWithName } from "../atoms/LogoWithName";
 import { RegisterForm } from "../molecules/RegisterForm";
 import { PasswordForm } from "../molecules/PasswordForm";
 import { useState } from "react";
-import { createUser } from "@/services/users";
+import { createUser } from "@/app/api/users";
 
 export const RegisterCard = () => {
   const [form, setForm] = useState("register");

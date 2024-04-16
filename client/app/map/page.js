@@ -3,8 +3,8 @@
 import { Layout } from "@/components/layouts/Layout";
 import { RestaurantCard } from "@/components/organisms/RestaurantCard";
 import { RestaurantsMap } from "@/components/organisms/RestaurantMap";
-import { getRestaurants } from "@/services/restaurants";
 import { useEffect, useState } from "react";
+import { getRestaurants } from "../api/restaurants";
 
 export default function MapPage() {
   const [restaurants, setRestaurants] = useState([]);
