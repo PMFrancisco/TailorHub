@@ -1,8 +1,6 @@
-import React from 'react';
-
-export const ImageContainer = ({ children }) => {
+export const ImageContainer = ({ children, className }) => {
   return (
-    <div className={`w-full h-full overflow-hidden rounded-xl flex justify-center items-center`}>
+    <div className={`overflow-hidden rounded-xl flex justify-center items-center ${className}`}>
       {children}
     </div>
   );

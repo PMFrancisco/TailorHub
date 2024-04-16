@@ -8,7 +8,6 @@ export const createUser = async (username, email, password) => {
       if (error.response && error.response.data && error.response.data.message) {
         throw new Error(error.response.data.message);
       } else {
-        // Manejar otros tipos de errores que no tienen la estructura esperada
         throw new Error('Error de registro: ' + error.message);
       }
     }

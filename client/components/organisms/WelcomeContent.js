@@ -8,7 +8,7 @@ export const WelcomeContent = () => {
     <Layout
       leftContent={<WelcomeCard />}
       rightContent={
-        <ImageContainer>
+        <ImageContainer className={"w-full h-full"}>
           <StyledImage
             src="/images/welcomePage.jpg"
             alt="Interior view of a contemporary café with warm lighting. Paper flower-designed lamps hang from the ceiling, drawing the eye to the wooden tables and matching chairs. A person is seated with their back to the camera, enjoying the cafe's serene ambiance."

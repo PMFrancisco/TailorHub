@@ -6,7 +6,7 @@ export const Layout = ({ leftContent, rightContent }) => {
       <div className="flex-grow overflow-hidden">
         <div className="flex flex-row items-end px-8 pt-8 gap-8 h-full">
           <div className="w-1/2">{leftContent}</div>
-          <div className="w-1/2 h-full">{rightContent}</div>
+          <div className="w-1/2 h-full overflow-y-auto">{rightContent}</div>
         </div>
       </div>
       <div className="px-8 pb-4">

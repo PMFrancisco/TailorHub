@@ -10,7 +10,7 @@ export default function Login() {
     <Layout
       leftContent={<LoginCard />}
       rightContent={
-        <ImageContainer>
+        <ImageContainer className={"h-full"}>
           <StyledImage
             src="/images/login.jpg"
             alt="Indoor botanical garden cafe with lush hanging plants and natural lighting. Patrons enjoy conversations at wooden tables beneath a glass ceiling."
