@@ -2,7 +2,7 @@ export const Text = ({ children, variant }) => {
   const baseClass = "font-sans";
   const variantClasses = {
     restaurantTitle: "font-semibold text-4xl",
-    restaurantDidrection: "text-2xl",
+    SRegular: "text-2xl",
     commentCount: "text-sm",
   };
 

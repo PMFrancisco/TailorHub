@@ -12,15 +12,12 @@ export const RegisterCard = () => {
 
   const handleRegisterSubmit = (data) => {
     setUserData(data);
-    console.log("Datos recogidos en el primer formulario:", data);
     setForm("password");
   };
 
   const handlePasswordSubmit = async (password) => {
-    console.log("Datos antes de llamar a createUser:", { ...userData, password });
     try {
       const result = await createUser(userData.username, userData.email, password);
-      console.log("Registro exitoso:", result);
     } catch (error) {
       console.error("Error completo al registrar el usuario:", error);    }
   };

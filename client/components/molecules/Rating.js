@@ -1,7 +1,6 @@
 import { Star } from "../atoms/Star";
 
 export const Rating = ({ restaurant }) => {
-  console.log(restaurant);
 
   const totalRating = restaurant.reviews.reduce(
     (acc, review) => acc + review.rating,
