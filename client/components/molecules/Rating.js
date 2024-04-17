@@ -1,12 +1,9 @@
 import { Star } from "../atoms/Star";
 
 export const Rating = ({ restaurant }) => {
-
-  const totalRating = restaurant.reviews.reduce(
-    (acc, review) => acc + review.rating,
-    0
-  );
-  const averageRating = Math.round(totalRating / restaurant.reviews.length);
+  const totalRating =
+    restaurant.reviews?.reduce((acc, review) => acc + review.rating, 0) || 0;
+  const averageRating = Math.round(totalRating / restaurant.reviews?.length);
 
   const totalStars = 5;
 

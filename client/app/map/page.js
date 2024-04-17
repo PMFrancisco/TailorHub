@@ -4,14 +4,15 @@ import { RestaurantCard } from "@/components/organisms/RestaurantCard";
 import { RestaurantsMap } from "@/components/organisms/RestaurantMap";
 import { useEffect, useState } from "react";
 import { getRestaurants } from "../api/restaurants";
-import { LoggedLayout } from "@/components/layouts/LoggedLayout";
 import { Spinner } from "@/components/atoms/Spinner";
+import { useRouter } from "next/navigation";
+import { TwoContentLayout } from "@/components/layouts/TwoContentLayout";
 
 export default function MapPage() {
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [loading, setLoading] = useState(true)
-
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
   useEffect(() => {
     async function fetchAndSetRestaurants() {
       try {
@@ -19,7 +20,7 @@ export default function MapPage() {
         setRestaurants(data);
         setLoading(false);
       } catch (error) {
-        console.error("Error al cargar los restaurantes:", error.message);
+        console.error("Error loading the restaurants:", error.message);
       }
     }
 
@@ -28,7 +29,7 @@ export default function MapPage() {
 
   const handleRestaurantClick = (restaurant) => {
     if (selectedRestaurant && selectedRestaurant.id === restaurant.id) {
-      setSelectedRestaurant(null);
+      router.push(`/restaurants/${restaurant.id}`);
     } else {
       setSelectedRestaurant(restaurant);
       console.log("Selected restaurant in handleRestaurantClick:", restaurant);
@@ -36,7 +37,7 @@ export default function MapPage() {
   };
 
   return (
-    <LoggedLayout
+    <TwoContentLayout
       leftContent={
         <RestaurantsMap
           restaurants={restaurants}
@@ -51,11 +52,12 @@ export default function MapPage() {
           ) : (
             restaurants.map((restaurant) => (
               <RestaurantCard
-              key={restaurant.id}
-              restaurant={restaurant}
-              onClick={() => handleRestaurantClick(restaurant)}
-              selected={selectedRestaurant}
-            />            ))
+                key={restaurant.id}
+                restaurant={restaurant}
+                onClick={() => handleRestaurantClick(restaurant)}
+                selected={selectedRestaurant}
+              />
+            ))
           )}
         </div>
       }

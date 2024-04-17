@@ -32,6 +32,7 @@ export const LoginForm = ({}) => {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder={"Escribe tu email"}
+        className={"placeholder:text-white"}
       />
       <Input
         label={"Contraseña"}
@@ -40,6 +41,8 @@ export const LoginForm = ({}) => {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
         placeholder={"Escribe tu contraseña"}
+        className={"placeholder:text-white"}
+
       />
       <div>
         <Button type="submit">Entrar</Button>

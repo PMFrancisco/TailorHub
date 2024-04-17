@@ -4,10 +4,9 @@ import { Rating } from "../molecules/Rating";
 import { RestaurantHeader } from "../molecules/RestaurantHeader";
 import { ReviewCount } from "../molecules/ReviewCount";
 
-
 export const RestaurantCard = ({ restaurant, onClick, selected }) => {
   const opacityClass =
-    selected && selected.id !== restaurant.id ? "opacity-50" : "";
+    selected && selected.id === restaurant.id ? "" : "opacity-50";
   return (
     <div className={`flex flex-row gap-6 ${opacityClass}`} onClick={onClick}>
       <ImageContainer
@@ -25,7 +24,7 @@ export const RestaurantCard = ({ restaurant, onClick, selected }) => {
         <RestaurantHeader name={restaurant.name} address={restaurant.address} />
         <div className="flex flex-row items-center gap-2">
           <Rating restaurant={restaurant} />
-          <ReviewCount count={restaurant.reviews.length} />
+          <ReviewCount count={restaurant.reviews?.length || 0} />
         </div>
       </div>
     </div>
