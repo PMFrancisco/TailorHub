@@ -20,6 +20,8 @@ const corsOptions = {
   credentials: true,
 };
 
+app.use('/uploads', express.static('uploads'));
+
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 
