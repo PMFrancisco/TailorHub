@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
 router.get("/user", authenticateToken, async (req, res) => {
   try {
     const user = await UserModel.findByEmail(req.user.email);
-    res.json({ username: user.username, email: user.email, user: user.favourites });
+    res.json({ username: user.username, email: user.email, user: user.favorites });
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve user data" });
   }
@@ -68,35 +68,40 @@ router.post("/logout", authenticateToken, async (req, res) => {
   }
 });
 
-router.post("/favorites/add", authenticateToken, async (req, res) => {
+router.post("/favorites/toggle", authenticateToken, async (req, res) => {
   const username = req.user.username;
   const { restaurantId } = req.body;
 
   try {
-    const user = await UserModel.findByUsername(username);
-    if (!user.favorites.includes(restaurantId)) {
-      user.favorites.push(restaurantId);
-      await user.save();
-    }
-    res.json({ favorites: user.favorites });
+      let users = await UserModel.readUsers();
+      let user = users.find(user => user.username === username);
+      if (!user) {
+          return res.status(404).json({ error: "User not found" });
+      }
+
+      const index = user.favorites.indexOf(restaurantId);
+      if (index === -1) {
+          user.favorites.push(restaurantId);
+      } else {
+          user.favorites.splice(index, 1);
+      }
+
+      const updatedUsers = users.map(u => {
+        if (u.username === username) {
+          return {...u, favorites: user.favorites};
+        }
+        return u;
+      });
+
+      await UserModel.writeUsers(updatedUsers); 
+      res.json({ favorites: user.favorites });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+      console.error("Error managing favorites", error);
+      res.status(500).json({ error: "Error managing favorites", details: error.message });
   }
 });
 
-router.post("/favorites/remove", authenticateToken, async (req, res) => {
-  const username = req.user.username;
-  const { restaurantId } = req.body;
 
-  try {
-    const user = await UserModel.findByUsername(username);
-    user.favorites = user.favorites.filter(id => id !== restaurantId);
-    await user.save();
-    res.json({ favorites: user.favorites });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 
 module.exports = router;

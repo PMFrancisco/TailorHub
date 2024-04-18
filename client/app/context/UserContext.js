@@ -11,10 +11,12 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     fetchUserData()
       .then((userData) => {
-        setUser(userData);
+        if (userData) {
+          setUser({...userData, favorites: userData.favorites || []});
+        }
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error fetching user data:", error);
       });
   }, []);
 

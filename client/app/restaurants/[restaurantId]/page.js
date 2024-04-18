@@ -7,6 +7,7 @@ import { getRestaurantById } from "@/app/api/restaurants";
 import { DescriptionAndComments } from "@/components/organisms/DescriptionAndComments";
 import { SingleRestaurantHeader } from "@/components/organisms/SingleRestaurantHeader";
 import { NewCommentBox } from "@/components/molecules/NewCommentBox";
+import { FavoriteButton } from "@/components/molecules/FavoriteButton";
 
 export default function RestaurantPage({ params }) {
   const { restaurantId } = params;
@@ -32,15 +33,19 @@ export default function RestaurantPage({ params }) {
   }, [restaurantId]);
 
   const addReview = (newComment) => {
-    setReviews(prevComments => [...prevComments, newComment]);
+    setReviews((prevComments) => [...prevComments, newComment]);
   };
 
-  const handleReviewDeleted = reviewId => {
-    setReviews(reviews => reviews.filter(review => review.id !== reviewId));
+  const handleReviewDeleted = (reviewId) => {
+    setReviews((reviews) => reviews.filter((review) => review.id !== reviewId));
   };
 
   const handleReviewUpdated = (updatedReview) => {
-    setReviews(reviews => reviews.map(review => review.id === updatedReview.id ? updatedReview : review));
+    setReviews((reviews) =>
+      reviews.map((review) =>
+        review.id === updatedReview.id ? updatedReview : review
+      )
+    );
   };
 
   return (
@@ -53,16 +58,19 @@ export default function RestaurantPage({ params }) {
             <div className="flex flex-col items-center w-full gap-8">
               <SingleRestaurantHeader restaurant={restaurant} />
               <div className="w-3/4 flex flex-row gap-8">
-                <DescriptionAndComments 
-                  restaurant={restaurant} 
-                  reviews={reviews} 
+                <DescriptionAndComments
+                  restaurant={restaurant}
+                  reviews={reviews}
                   onReviewDeleted={handleReviewDeleted}
                   onReviewUpdated={handleReviewUpdated}
                 />
-                <NewCommentBox
-                  restaurantId={restaurantId}
-                  addReview={addReview}
-                />
+                <div className="flex flex-col gap-4">
+                  <FavoriteButton restaurantId={restaurantId} />
+                  <NewCommentBox
+                    restaurantId={restaurantId}
+                    addReview={addReview}
+                  />
+                </div>
               </div>
             </div>
           </>

@@ -32,7 +32,7 @@ class UserModel {
             throw new Error('Username or email already exists');
         }
 
-        const user = { username, email, password: hashedPassword, favourites: [] };
+        const user = { username, email, password: hashedPassword, favorites: [] };
         users.push(user);
         await this.writeUsers(users);
         return this.generateToken(user);
@@ -43,12 +43,17 @@ class UserModel {
         return users.find(user => user.email === email);
     }
 
+    static async findByUsername(username) {
+        const users = await this.readUsers();
+        return users.find(user => user.username === username);
+    }
+
     static async validatePassword(user, password) {
         return bcrypt.compare(password, user.password);
     }
 
     static generateToken(user) {
-        return jwt.sign({ username: user.username, email: user.email, favourites: user.favourites }, JWT_SECRET, { expiresIn: '2h' });
+        return jwt.sign({ username: user.username, email: user.email, favorites: user.favorites }, JWT_SECRET, { expiresIn: '2h' });
     }
 }
 

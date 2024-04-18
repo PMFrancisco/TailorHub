@@ -90,8 +90,10 @@ export const logout = async () => {
 };
 
 
-export const addFavorite = async (username, restaurantId) => {
-  const url = `${config.baseURL}/users/${username}/favorites/add`;
+export const toggleFavorite = async (restaurantId) => {
+  const url = `${config.baseURL}/users/favorites/toggle`;
+  console.log("URL being called:", url);
+  console.log("Data being sent:", { restaurantId });
 
   try {
     const response = await fetch(url, {
@@ -101,37 +103,20 @@ export const addFavorite = async (username, restaurantId) => {
       body: JSON.stringify({ restaurantId })
     });
 
+    console.log("Full response from server:", response);
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to add favorite");
+      const errorText = await response.text();
+      console.error("Non-JSON error response:", errorText);
+      throw new Error('Response not OK. Status: ' + response.status);
     }
 
-    return await response.json();
+    const data = await response.json(); 
+    console.log("Response JSON:", data);
+    return data;
   } catch (error) {
-    console.error("Add favorite error:", error.message);
+    console.error("Toggle favorite error:", error);
     throw error;
   }
 };
 
-export const removeFavorite = async (username, restaurantId) => {
-  const url = `${config.baseURL}/users/${username}/favorites/remove`;
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: config.headers,
-      credentials: config.credentials,
-      body: JSON.stringify({ restaurantId })
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to remove favorite");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Remove favorite error:", error.message);
-    throw error;
-  }
-};

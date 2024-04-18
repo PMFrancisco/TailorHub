@@ -35,7 +35,7 @@ export const ImageUploadBox = ({ setImageFile }) => {
       {!imageSrc ? (
         <label
           onClick={handleClickOnLabel}
-          className="h-full border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex justify-center items-center"
+          className="h-full min-h-72 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex justify-center items-center"
         >
           <span className="text-gray-500">Añadir imagen</span>
           <input

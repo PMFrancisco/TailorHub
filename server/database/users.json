@@ -3,18 +3,20 @@
     "username": "testUser",
     "email": "test@test.com",
     "password": "$2b$10$Iw326Ue5nNvIejKyoM8LH.q8Otr1gWJ9aKbTSJXqnsuyOZ/xmWOgC",
-    "favourites": []
+    "favorites": []
   },
   {
     "username": "123",
     "email": "123@123.com",
     "password": "$2b$10$tnAxVff3zDi4/kJtLbxcuOiAVIv1ZGShlHZnOnse9oAAg.rHVtb9y",
-    "favourites": []
+    "favorites": [
+      "1"
+    ]
   },
   {
     "username": "456",
     "email": "456@456.com",
     "password": "$2b$10$M1JAorgTYsK6h9H5YP3V.OkKBBZZ4j41KJrByp4gkqB7w8Np0bFve",
-    "favourites": []
+    "favorites": []
   }
 ]
