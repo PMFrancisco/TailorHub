@@ -49,14 +49,28 @@ router.post("/", upload.single("image"), async (req, res) => {
   });
   
 
-router.put("/:id", (req, res) => {
-  const restaurant = restaurants.find((r) => r.id === parseInt(req.params.id));
-  if (!restaurant) return res.status(404).send("Restaurant not found.");
-
-  restaurant.name = req.body.name || restaurant.name;
-  restaurant.location = req.body.location || restaurant.location;
-  res.send(restaurant);
-});
+  router.post("/:id/reviews", (req, res) => {
+    const { id } = req.params;
+    const { name, rating, comments } = req.body;
+    const restaurant = restaurants.find(r => r.id === parseInt(id));
+  
+    if (!restaurant) {
+      return res.status(404).send("Restaurant not found.");
+    }
+  
+    const newReview = {
+      name,
+      date: new Date().toLocaleDateString("en-US"),
+      rating,
+      comments
+    };
+  
+    restaurant.reviews.push(newReview);
+  
+    fs.writeFileSync(restaurantsDataPath, JSON.stringify(restaurants, null, 2), 'utf8');
+    res.json(newReview);
+  });
+  
 
 router.delete("/:id", (req, res) => {
   const index = restaurants.findIndex((r) => r.id === parseInt(req.params.id));
