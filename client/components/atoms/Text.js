@@ -3,6 +3,9 @@ export const Text = ({ children, variant }) => {
   const variantClasses = {
     restaurantTitle: "font-semibold text-4xl",
     SRegular: "text-2xl",
+    SSemiBold: "text-2xl font-semibold",
+    MSemiBold: "text-4xl font-semibold",
+    header: "text-4xl text-[56px] leading-[42px]",
     commentCount: "text-sm",
   };
 

@@ -32,7 +32,6 @@ export default function MapPage() {
       router.push(`/restaurants/${restaurant.id}`);
     } else {
       setSelectedRestaurant(restaurant);
-      console.log("Selected restaurant in handleRestaurantClick:", restaurant);
     }
   };
 

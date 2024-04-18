@@ -19,6 +19,8 @@ export const RegisterForm = ({ onSubmit }) => {
         placeholder={"Añade tu email"}
         value={email}
         onChange={(event) => setEmail(event.target.value)}
+        className={"placeholder:text-white"}
+
       />
       <Input
         label={"Nombre de Usuario"}
@@ -27,6 +29,8 @@ export const RegisterForm = ({ onSubmit }) => {
         placeholder={"Añade tu nombre"}
         value={username}
         onChange={(event) => setUsername(event.target.value)}
+        className={"placeholder:text-white"}
+
       />
       <div>
         <Button type="submit">Siguiente</Button>

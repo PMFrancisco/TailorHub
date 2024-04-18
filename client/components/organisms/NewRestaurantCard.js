@@ -9,7 +9,6 @@ export const NewRestaurantCard = () => {
   const [imageFile, setImageFile] = useState(null);
 
   const handleFormSubmit = async (formData) => {
-    console.log("Submitting form with data:", formData);
 
     try {
       const response = await addRestaurant(formData, imageFile);
@@ -21,7 +20,7 @@ export const NewRestaurantCard = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className="flex flex-col items-center justify-center gap-8 text-black">
       <StyledImage src="/images/logo.png" />
 
       <div className="flex flex-row items-end px-8 pt-8 gap-8 w-full h-full">

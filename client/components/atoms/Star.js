@@ -1,7 +1,8 @@
-export const Star = ({ filled }) => {
+export const Star = ({ filled, onClick }) => {
   const fillColor = filled ? "#264BEB" : "none";
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       fill={fillColor}
       viewBox="0 0 24 24"

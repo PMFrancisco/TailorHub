@@ -13,7 +13,10 @@ export function middleware(request) {
 
   const token = request.cookies.get("token");
 
-  if (!token && pathname.startsWith("/map")) {
+  const needsAuth =
+    pathname.startsWith("/map") || pathname.startsWith("/restaurants");
+
+  if (!token && needsAuth) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -24,11 +27,11 @@ export function middleware(request) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    if ((pathname.startsWith("/login") || pathname.startsWith("/register"))) {
+    if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
       return NextResponse.redirect(new URL("/map", request.url));
     }
 
-    if (pathname.startsWith("/map")) {
+    if (needsAuth) {
       return NextResponse.next();
     }
   }

@@ -8,16 +8,7 @@ export const NewRestaurantForm = ({ onFormSubmit, imageSrc }) => {
   const [description, setDescription] = useState("");
 
   const handleSubmit = (event) => {
-    console.log(
-      "Name:",
-      name,
-      "Address:",
-      address,
-      "Description:",
-      description,
-      "Image:",
-      imageSrc
-    );
+
     event.preventDefault();
     if (!name || !address || !description) {
       alert("Todos los campos son necesarios.");

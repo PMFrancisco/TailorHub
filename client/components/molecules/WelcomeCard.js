@@ -5,7 +5,7 @@ import { Title } from "../atoms/Title";
 
 export const WelcomeCard = () => {
   return (
-    <div className="bg-[#F1F1F0] rounded-xl p-8 flex flex-col items-start justify-center w-full m-auto gap-8">
+    <div className="bg-[#F1F1F0] text-black rounded-xl p-8 flex flex-col items-start justify-center w-full m-auto gap-8">
       <LogoWithName />
       <div>
         <Title>Hola,</Title>

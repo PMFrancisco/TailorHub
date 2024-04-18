@@ -6,15 +6,15 @@ export const ImageUploadBox = ({ setImageFile }) => {
     const fileInputRef = useRef(null);
   
     const handleImageChange = (e) => {
-      e.stopPropagation(); // Good practice to stop propagation in complex forms
+      e.stopPropagation();
       const file = e.target.files[0];
       if (file && file.type.startsWith("image")) {
         const imageURL = URL.createObjectURL(file);
         setImageSrc(imageURL);
-        setImageFile(file); // Pass the file up to the parent component
+        setImageFile(file);
       } else {
         setImageSrc(null);
-        setImageFile(null); // Ensure to clear the file state in parent component
+        setImageFile(null);
       }
     };
 

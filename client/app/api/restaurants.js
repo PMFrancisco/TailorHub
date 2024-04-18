@@ -21,9 +21,8 @@ export const getRestaurants = async () => {
   }
 };
 
-export const getRestaurantById = async (id) => {
-  const url = `${config.baseURL}/restaurants/${id}`;
-  console.log("Fetching URL:", url);
+export const getRestaurantById = async (restaurantId) => {
+  const url = `${config.baseURL}/restaurants/${restaurantId}`;
 
   try {
     const response = await fetch(url, {
@@ -32,14 +31,12 @@ export const getRestaurantById = async (id) => {
       credentials: config.credentials,
     });
 
-    console.log("Response Status:", response.status);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log("Data received:", data);
     return data;
   } catch (error) {
     console.error("Error al cargar el restaurante:", error.message);
@@ -69,6 +66,32 @@ export const addRestaurant = async (restaurantData, imageFile) => {
     return await response.json();
   } catch (error) {
     console.error("Error al añadir el restaurante:", error.message);
+    throw new Error(error.message);
+  }
+};
+
+
+export const addReviewToRestaurant = async (restaurantId, review) => {
+  const url = `${config.baseURL}/restaurants/${restaurantId}/reviews`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        ...config.headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(review),
+      credentials: config.credentials,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error al añadir comentario:", error.message);
     throw new Error(error.message);
   }
 };

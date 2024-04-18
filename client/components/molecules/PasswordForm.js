@@ -19,6 +19,8 @@ export const PasswordForm = ({ onSubmit }) => {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
         placeholder={"Añade una contraseña"}
+        className={"placeholder:text-white"}
+
       />
       <div>
         <Button type="submit">Finalizar</Button>
