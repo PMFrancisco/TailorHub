@@ -12,7 +12,7 @@ export default function RestaurantPage({ params }) {
   const { restaurantId } = params;
   const [restaurant, setRestaurant] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState("");
+  const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function RestaurantPage({ params }) {
       getRestaurantById(restaurantId)
         .then((data) => {
           setRestaurant(data);
-          setReviews(data.reviews);
+          setReviews(data.reviews || []);
           setLoading(false);
         })
         .catch((err) => {
@@ -32,7 +32,15 @@ export default function RestaurantPage({ params }) {
   }, [restaurantId]);
 
   const addReview = (newComment) => {
-    setReviews((prevComments) => [...prevComments, newComment]);
+    setReviews(prevComments => [...prevComments, newComment]);
+  };
+
+  const handleReviewDeleted = reviewId => {
+    setReviews(reviews => reviews.filter(review => review.id !== reviewId));
+  };
+
+  const handleReviewUpdated = (updatedReview) => {
+    setReviews(reviews => reviews.map(review => review.id === updatedReview.id ? updatedReview : review));
   };
 
   return (
@@ -45,7 +53,12 @@ export default function RestaurantPage({ params }) {
             <div className="flex flex-col items-center w-full gap-8">
               <SingleRestaurantHeader restaurant={restaurant} />
               <div className="w-3/4 flex flex-row gap-8">
-                <DescriptionAndComments restaurant={restaurant} reviews={reviews} />
+                <DescriptionAndComments 
+                  restaurant={restaurant} 
+                  reviews={reviews} 
+                  onReviewDeleted={handleReviewDeleted}
+                  onReviewUpdated={handleReviewUpdated}
+                />
                 <NewCommentBox
                   restaurantId={restaurantId}
                   addReview={addReview}

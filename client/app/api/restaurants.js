@@ -31,7 +31,6 @@ export const getRestaurantById = async (restaurantId) => {
       credentials: config.credentials,
     });
 
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -70,7 +69,6 @@ export const addRestaurant = async (restaurantData, imageFile) => {
   }
 };
 
-
 export const addReviewToRestaurant = async (restaurantId, review) => {
   const url = `${config.baseURL}/restaurants/${restaurantId}/reviews`;
 
@@ -79,7 +77,7 @@ export const addReviewToRestaurant = async (restaurantId, review) => {
       method: "POST",
       headers: {
         ...config.headers,
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(review),
       credentials: config.credentials,
@@ -92,6 +90,56 @@ export const addReviewToRestaurant = async (restaurantId, review) => {
     return await response.json();
   } catch (error) {
     console.error("Error al añadir comentario:", error.message);
+    throw new Error(error.message);
+  }
+};
+
+export const deleteReviewFromRestaurant = async (restaurantId, reviewId) => {
+  const url = `${config.baseURL}/restaurants/${restaurantId}/reviews/${reviewId}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: config.headers,
+      credentials: config.credentials,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error al eliminar comentario:", error.message);
+    throw new Error(error.message);
+  }
+};
+
+export const updateReviewInRestaurant = async (
+  restaurantId,
+  reviewId,
+  reviewData
+) => {
+  const url = `${config.baseURL}/restaurants/${restaurantId}/reviews/${reviewId}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        ...config.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewData),
+      credentials: config.credentials,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error al actualizar comentario:", error.message);
     throw new Error(error.message);
   }
 };
