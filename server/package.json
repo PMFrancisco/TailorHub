@@ -1,7 +1,6 @@
 {
   "scripts": {
     "test": "test",
-    "prepare": "husky",
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
