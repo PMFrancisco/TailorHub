@@ -42,6 +42,19 @@ This README provides information about the backend of the Restaurants List appli
   yarn install
 ```
 
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`CORS_DOMAINS`
+
+`JWT_SECRET`
+
+`GOOGLE_MAPS_API_KEY`
+
+
+
 ## Deployment
 
 To deploy this project run
