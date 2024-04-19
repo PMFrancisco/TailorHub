@@ -38,6 +38,16 @@ This README provides information about the frontend of the Restaurants List appl
   yarn install
 ```
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`NEXT_PUBLIC_SERVER_URL`
+
+`JWT_SECRET`
+
+
+
 ## Deployment
 
 To deploy this project run
